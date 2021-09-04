@@ -15,6 +15,13 @@ function showRoom() {
 	h3.innerText = `Room ${roomName}`;
 }
 
+function makeMessage(msg) {
+	const ul = room.querySelector("ul");
+	const li = document.createElement("li");
+	li.innerText = msg;
+	ul.appendChild(li);
+}
+
 roomForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 	const input = roomForm.querySelector("input");
@@ -26,4 +33,8 @@ roomForm.addEventListener("submit", (event) => {
 
 messageForm.addEventListener("submit", (event) => {
 	event.preventDefault();
+});
+
+socket.on("welcome", () => {
+	makeMessage("Someone Joined!");
 });
