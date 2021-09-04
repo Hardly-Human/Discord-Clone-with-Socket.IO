@@ -1,12 +1,16 @@
 {
-  "name": "discord-clone-with-socket.io",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+	"name": "discord-clone-with-socket.io",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"dev": "nodemon src/server.js"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"express": "^4.17.1",
+		"pug": "^3.0.2"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.12"
+	}
 }
