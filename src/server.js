@@ -17,9 +17,13 @@ const httpServer = http.createServer(app);
 const wsServer = SocketIO(httpServer);
 
 wsServer.on("connection", (socket) => {
-	console.log("Connected to Browser ✅");
-	socket.on("enter_name", (roomName) => {
+	socket.onAny((event) => {
+		console.log(`Socket Event : ${event}`);
+	});
+
+	socket.on("enter_name", (roomName, done) => {
 		socket.join(roomName);
+		done();
 	});
 });
 

@@ -11,10 +11,16 @@ html(lang="en")
             h1 Discord Clone
 
         main
-            #welcome
+            div#welcome
                 form#roomForm
                     h3 Select Room
                     input(type="text", placeholder="Enter Room Name", required)
+                    button Send
+            div#room
+                h3
+                ul
+                form#messageForm
+                    input(type="text", placeholder="Enter your Message", required)
                     button Send
         script(src="/socket.io/socket.io.js")
         script(src="/js/app.js")
