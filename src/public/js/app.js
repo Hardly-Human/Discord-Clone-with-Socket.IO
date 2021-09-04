@@ -1,5 +1,6 @@
 const socket = io();
 
+const nameForm = document.querySelector("#nameForm");
 const welcome = document.querySelector("#welcome");
 const roomForm = document.querySelector("#roomForm");
 const room = document.querySelector("#room");
@@ -42,12 +43,18 @@ roomForm.addEventListener("submit", (event) => {
 	input.value = "";
 });
 
-socket.on("welcome", () => {
-	makeMessage("Someone Joined!");
+nameForm.addEventListener("submit", (event) => {
+	event.preventDefault();
+	const input = nameForm.querySelector("input");
+	socket.emit("nickname", input.value);
 });
 
-socket.on("bye", () => {
-	makeMessage("Someone Left!");
+socket.on("welcome", (name) => {
+	makeMessage(`${name} Joined!`);
+});
+
+socket.on("bye", (name) => {
+	makeMessage(`${name} Left!`);
 });
 
 socket.on("new_message", (msg) => {
