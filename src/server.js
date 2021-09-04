@@ -1,7 +1,8 @@
 const path = require("path");
 const http = require("http");
 const express = require("express");
-const SocketIO = require("socket.io");
+const { Server } = require("socket.io");
+const { instrument } = require("@socket.io/admin-ui");
 
 const app = express();
 app.set("view engine", "pug");
@@ -14,7 +15,16 @@ app.get("/", (req, res) => {
 });
 
 const httpServer = http.createServer(app);
-const wsServer = SocketIO(httpServer);
+const wsServer = new Server(httpServer, {
+	cors: {
+		origin: ["https://admin.socket.io"],
+		credentials: true,
+	},
+});
+
+instrument(wsServer, {
+	auth: false,
+});
 
 function PublicRooms() {
 	const sids = wsServer.sockets.adapter.sids;
