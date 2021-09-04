@@ -7,7 +7,7 @@ const room = document.querySelector("#room");
 const messageForm = document.querySelector("#messageForm");
 
 let roomName = "";
-room.hidden = true;
+room.style.display = "none";
 
 function makeMessage(msg) {
 	const ul = room.querySelector("ul");
@@ -27,16 +27,16 @@ function handleMessageSubmit(event) {
 }
 
 function showRoom(roomCount) {
-	welcome.hidden = true;
-	room.hidden = false;
+	welcome.style.display = "none";
+	room.style.display = "flex";
 	const h3 = room.querySelector("h3");
-	h3.innerText = `Room ${roomName}`;
+	h3.innerText = `Room Name : ${roomName}`;
 	messageForm.addEventListener("submit", handleMessageSubmit);
 }
 
 function updateTitle(count) {
 	const h3 = room.querySelector("h3");
-	h3.innerText = `Room ${roomName} (${count})`;
+	h3.innerText = `Room Name : ${roomName} (${count})`;
 }
 
 roomForm.addEventListener("submit", (event) => {
@@ -79,4 +79,9 @@ socket.on("room_change", (rooms) => {
 		li.innerText = room;
 		roomList.append(li);
 	});
+});
+
+const exit_room = document.getElementById("exit-room");
+exit_room.addEventListener("click", () => {
+	window.location.reload();
 });

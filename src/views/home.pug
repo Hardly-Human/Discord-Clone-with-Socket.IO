@@ -6,6 +6,23 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="https://unpkg.com/mvp.css")
         title Discord Clone
+        style.
+            #welcome, #room{
+                display: flex;
+                justify-content: space-around;
+            }
+            #welcome form{
+                width: 300px
+            }
+
+            #room form{
+                width: 400px
+            }
+
+            #messageList ul{
+                height: 150px;
+                overflow: scroll
+            }
     body
         header
             h1 Discord Clone
@@ -16,19 +33,24 @@ html(lang="en")
                     h3 Select Name
                     input(type="text", placeholder="Enter a Name",required)
                     button Save
-
-                h4 Open Rooms
-                ul
+                form
+                    h3 Open Rooms
+                    ul
 
                 form#roomForm
                     h3 Select Room
                     input(type="text", placeholder="Enter Room Name", required)
                     button Send
+
             div#room
-                h3
-                ul
+                form#messageList
+                    h3
+                    ul
                 form#messageForm
+                    h3 Message Form
                     input(type="text", placeholder="Enter your Message", required)
                     button Send
+                div
+                    button#exit-room Exit Room
         script(src="/socket.io/socket.io.js")
         script(src="/js/app.js")
